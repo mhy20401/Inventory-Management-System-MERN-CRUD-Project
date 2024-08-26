@@ -3,11 +3,12 @@ const router = express.Router();
 const products = require('../Models/Products');
 const { v4: uuidv4 } = require('uuid');
 
+
 //Inserting(Creating) Data:
 router.post("/insertproduct", async (req, res) => {
     const { ProductName, ProductPrice } = req.body;
 
-    try {
+    try{
         // Generate a unique barcode for the new product
         const productBarcode = uuidv4();
         
