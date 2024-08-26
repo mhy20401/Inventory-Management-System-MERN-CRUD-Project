@@ -69,7 +69,7 @@ export default function InsertProduct() {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ "ProductName": productName, "ProductPrice": productPrice, "ProductBarcode": productBarcode })
+                body: JSON.stringify({ "ProductName": productName, "ProductPrice": productPrice })
             });
 
             await response.json();
@@ -99,10 +99,6 @@ export default function InsertProduct() {
             <div className="mt-3 col-lg-6 col-md-6 col-12">
                 <label htmlFor="product_price" className="form-label fs-4 fw-bold">Product Price</label>
                 <input type="number" onChange={setPrice} value={productPrice} className="form-control fs-5" id="product_price" placeholder="Enter Product Price" required />
-            </div>
-            <div className="mt-3 mb-5 col-lg-6 col-md-6 col-12">
-                <label htmlFor="product_barcode" className="form-label fs-4 fw-bold">Product Barcode</label>
-                <input type="number" onChange={setBarcode} value={productBarcode} maxLength={12} className="form-control fs-5" id="product_barcode" placeholder="Enter Product Barcode" required />
             </div>
             <div className='d-flex justify-content-center col-lg-6 col-md-6'>
                 <NavLink to="/products" className='btn btn-primary me-5 fs-4'>Cancel</NavLink>

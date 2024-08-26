@@ -35,6 +35,12 @@ export default function Products() {
 
     const deleteProduct = async (id) => {
 
+        // Show a confirmation dialog
+        const isConfirmed = window.confirm('Are you sure you want to delete this product?');
+        if (!isConfirmed) {
+            return; // Exit the function if the user cancels
+            }
+
         const response = await fetch(`http://localhost:3001/deleteproduct/${id}`, {
             method: "DELETE",
             headers: {
@@ -54,10 +60,20 @@ export default function Products() {
 
     }
 
+    // Function to format date
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    };
+
     return (
         <>
-
-
             <div className='container-fluid p-5'>
                 <h1>Products Inventory</h1>
                 <div className='add_button'>
@@ -68,15 +84,15 @@ export default function Products() {
                         <thead>
                             <tr className="tr_color">
                                 <th scope="col">#</th>
-                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Description</th>
                                 <th scope="col">Product Price</th>
-                                <th scope="col">Product Barcode</th>
+                                <th scope="col">Product Code</th>
+                                <th scope="col">Date Added</th>
                                 <th scope="col">Update</th>
-                                <th scope="col">Delete</th>
+                                <th scope="col">Delete</th> 
                             </tr>
                         </thead>
                         <tbody>
-
                             {
                                 productData.map((element, id) => {
                                     return (
@@ -86,6 +102,7 @@ export default function Products() {
                                                 <td>{element.ProductName}</td>
                                                 <td>{element.ProductPrice}</td>
                                                 <td>{element.ProductBarcode}</td>
+                                                <td>{formatDate(element.DateAdded)}</td>
 
                                                 <td><NavLink to={`/updateproduct/${element._id}`} className="btn btn-primary"><i className="fa-solid fa-pen-to-square"></i></NavLink></td>
                                                 <td><button className="btn btn-danger" onClick={() => deleteProduct(element._id)}><i class="fa-solid fa-trash"></i></button></td>

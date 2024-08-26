@@ -1,20 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const products = require('../Models/Products');
+const { v4: uuidv4 } = require('uuid');
 
 //Inserting(Creating) Data:
 router.post("/insertproduct", async (req, res) => {
-    const { ProductName, ProductPrice, ProductBarcode } = req.body;
+    const { ProductName, ProductPrice } = req.body;
 
     try {
-        const pre = await products.findOne({ ProductBarcode: ProductBarcode })
+        // Generate a unique barcode for the new product
+        const productBarcode = uuidv4();
+        
+        const pre = await products.findOne({ ProductBarcode: productBarcode })
         console.log(pre);
 
         if (pre) {
             res.status(422).json("Product is already added.")
         }
         else {
-            const addProduct = new products({ ProductName, ProductPrice, ProductBarcode })
+            const addProduct = new products({ ProductName, ProductPrice, productBarcode })
 
             await addProduct.save();
             res.status(201).json(addProduct)
@@ -78,6 +82,21 @@ router.delete('/deleteproduct/:id', async (req, res) => {
         console.log(err);
     }
 })
+
+// Endpoint to get total revenue:
+router.get('/totalrevenue', async (req, res) => {
+    try {
+        // Aggregate total revenue by summing up all ProductPrice values
+        const revenueData = await products.aggregate([
+            { $group: { _id: null, totalRevenue: { $sum: "$ProductPrice" } } }
+        ]);
+        const totalRevenue = revenueData[0] ? revenueData[0].totalRevenue : 0;
+        res.status(200).json({ totalRevenue });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "An error occurred while calculating total revenue." });
+    }
+});
 
 
 module.exports = router;
