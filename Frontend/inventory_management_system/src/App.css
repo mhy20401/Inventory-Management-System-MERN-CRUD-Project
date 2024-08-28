@@ -1,9 +1,266 @@
+
+/* Custom Navbar Style */
+.custom-navbar {
+  background-color: #f5f7f9; /* Custom background color */
+}
+
+.custom-nav-link {
+  color: #f8f9fa; 
+  font-size: 1.25rem; 
+  font-weight: 600;
+}
+
+.custom-nav-link:hover {
+  color: #adb5bd; /* Color on hover */
+}
+
+
+
+
+
 .add_button {
-    text-align: right;
+    
+    text-align: left; /* Aligns text to the right */
+    padding: 5px 5px; /* Adds padding for a better click area */
+    /*background-color: #007bff; /* Primary color for the button */
+    color: white; /* Text color */
+    border: none; /* Removes default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
 }
 
 .tr_color {
-    color: white;
-    background-color: #D83830;
+    color: rgb(245, 233, 233); /* Text color */
+    background-color: #726f6f; /* Background color */
+    padding: 10px; /* Padding for better spacing */
+    border-bottom: 1px solid #ccc; /* Light border for separation */
 }
 
+/* Applies bold text to all table cells */
+table, th, td {
+    font-weight: 600;
+    font-size: 16px; /* Adjust this value as needed */
+  }
+
+
+body {
+    background-color: #c5c2c2; /* Light grey background */
+}
+
+
+/*Add new product button*/
+/* Add this CSS code to your App.css file */
+/* Custom Button Style */
+.btn-76 {
+  --neon: #0ea5e9; /* Neon color */
+  display: inline-block; /* Inline block to keep button size compact */
+  font-weight: 700; /* Slightly bold font */
+  background-color: #000; /* Background color */
+  color: #fff; /* Text color */
+  border: none; /* No border */
+  padding: 0.8rem 1.5rem; /* Reduced padding to make the button more compact */
+  border-radius: 8px; /* Rounded corners */
+  position: relative; /* For positioning pseudo-elements */
+  cursor: pointer; /* Pointer cursor on hover */
+  overflow: hidden; /* Hide overflow */
+  outline: 2px solid #fff; /* Outline for initial border effect */
+  outline-offset: -2px; /* Bring outline inside */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.btn-76:hover {
+  background-color: var(--neon); /* Change background to neon color on hover */
+  box-shadow: 0 0 10px var(--neon), 0 0 20px var(--neon), 0 0 30px var(--neon); /* Neon glow effect */
+  outline-color: transparent; /* Remove outline color on hover */
+}
+
+.btn-76:before,
+.btn-76:after {
+  content: '';
+  position: absolute;
+  background-color: var(--neon); /* Neon color for borders */
+  transition: transform 0.3s ease; /* Smooth transition for border animation */
+}
+
+.btn-76:before {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 4px; /* Top border width */
+}
+
+.btn-76:after {
+  bottom: -100%;
+  right: 0;
+  width: 4px; /* Right border width */
+  height: 100%;
+}
+
+.btn-76:hover:before {
+  transform: translateX(100%); /* Slide top border in on hover */
+}
+
+.btn-76:hover:after {
+  transform: translateY(-100%); /* Slide right border up on hover */
+}
+
+
+
+
+/*=============== NAVBAR ===============*/
+.custom-navbar {
+  background-color: #f5f7f9; /* Custom background color */
+  padding: 1rem; /* Add padding for better spacing */
+  box-shadow: 0 2px 16px hsla(230, 75%, 32%, .15); /* Shadow for a subtle 3D effect */
+}
+
+.custom-nav-link {
+  color: #f8f9fa; /* Link color */
+  font-size: 1.25rem; /* Font size for nav links */
+  font-weight: 600; /* Font weight */
+  transition: color 0.4s; /* Smooth transition for color change */
+}
+
+.custom-nav-link:hover {
+  color: #adb5bd; /* Color on hover */
+}
+
+/*=============== LOGIN ===============*/
+/* Overlay styles */
+.login {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-modal);
+  background-color: hsla(230, 75%, 15%, .1); /* Semi-transparent background */
+  backdrop-filter: blur(24px); /* Blur effect */
+  -webkit-backdrop-filter: blur(24px); /* For Safari */
+  padding: 8rem 1.5rem 0; /* Padding for the overlay */
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Disable interaction */
+  transition: opacity .4s; /* Smooth transition */
+}
+
+.login.show-login {
+  opacity: 1; /* Make visible */
+  pointer-events: initial; /* Enable interaction */
+}
+
+/* Close button styles */
+.login__close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  font-size: 1.5rem;
+  color: #f8f9fa; /* Close button color */
+  cursor: pointer; /* Pointer cursor */
+}
+
+/* Login form styles */
+.login__form {
+  background-color: #ffffff; /* White background for the form */
+  padding: 2rem 1.5rem 2.5rem;
+  box-shadow: 0 8px 32px hsla(230, 75%, 15%, .2); /* Shadow effect */
+  border-radius: 1rem; /* Rounded corners */
+  row-gap: 1.25rem;
+  text-align: center;
+  transform: translateY(-1rem); /* Initial hidden state */
+  transition: transform .4s; /* Smooth transition */
+}
+
+.login__title {
+  font-size: 1.25rem; /* Font size for title */
+  color: #333; /* Title color */
+}
+
+.login__group {
+  row-gap: 1rem;
+}
+
+.login__label {
+  display: block;
+  text-align: initial;
+  color: #333; /* Label color */
+  font-weight: 500; /* Medium font weight */
+  margin-bottom: .25rem;
+}
+
+.login__input {
+  width: 100%;
+  background-color: #f5f7f9; /* Background color for input */
+  border: 2px solid #ccc; /* Border color */
+  padding: 1rem;
+  border-radius: .5rem;
+  color: #333; /* Text color */
+}
+
+.login__input::placeholder {
+  color: #999; /* Placeholder color */
+}
+
+.login__button {
+  display: inline-block;
+  background-color: #007bff; /* Button color */
+  width: 100%;
+  color: #fff; /* Text color */
+  font-weight: 600; /* Bold text */
+  padding: 1rem;
+  border-radius: .5rem;
+  cursor: pointer; /* Pointer cursor */
+  transition: box-shadow .4s; /* Smooth transition */
+}
+
+.login__button:hover {
+  box-shadow: 0 4px 24px hsla(230, 75%, 40%, .4); /* Hover effect */
+}
+
+.login__forgot {
+  display: inline-block;
+  color: #007bff; /* Color for forgot password link */
+  margin-bottom: 1.25rem;
+}
+
+/*=============== MEDIA QUERIES ===============*/
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .login__form {
+    max-width: 400px;
+    margin-inline: auto;
+  }
+
+  .login__close {
+    width: max-content;
+    top: 5rem;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    font-size: 2rem;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1023px) {
+  .navbar-nav {
+    margin-left: auto;
+  }
+
+  .nav__actions {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+  }
+
+  .nav__login {
+    font-size: 1.25rem;
+    color: var(--title-color);
+    cursor: pointer;
+    transition: color .4s;
+  }
+
+  .nav__login:hover {
+    color: var(--first-color);
+  }
+}
